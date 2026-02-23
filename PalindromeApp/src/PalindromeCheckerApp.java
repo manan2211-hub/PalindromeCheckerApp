@@ -1,18 +1,24 @@
-// version 5.0
+// version 6.0
 // author Manan Sharma
-// UseCase 5 Stack Palindrome
+// UseCase 6 Queue + Stack Palindrome
 
+import java.util.Queue;
+import java.util.LinkedList;
 import java.util.Stack;
 
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        String input = "noon";
+        String input = "civic";
+
+        Queue<Character> queue = new LinkedList<>();
 
         Stack<Character> stack = new Stack<>();
 
         for(char c : input.toCharArray()) {
+
+            queue.add(c);
 
             stack.push(c);
 
@@ -20,11 +26,12 @@ public class PalindromeCheckerApp {
 
         boolean isPalindrome = true;
 
-        for(char c : input.toCharArray()) {
+        while(!queue.isEmpty()) {
 
-            if(c != stack.pop()) {
+            if(queue.remove() != stack.pop()) {
 
                 isPalindrome = false;
+
                 break;
 
             }
