@@ -1,31 +1,31 @@
-// version 2.0
-// UseCase 2 Hardcoded Palindrome
+// version 3.0
+// author Manan Sharma
+// UseCase 3 String Reverse Palindrome
 
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        String input = "madam";
+        String input = "radar";
 
-        boolean isPalindrome = true;
+        String reversed = "";
 
-        for(int i = 0; i < input.length()/2; i++) {
+        for(int i = input.length() - 1; i >= 0; i--) {
 
-            if(input.charAt(i) != input.charAt(input.length()-1-i)) {
-
-                isPalindrome = false;
-                break;
-
-            }
+            reversed = reversed + input.charAt(i);
 
         }
 
         System.out.println("Input: " + input);
 
-        if(isPalindrome)
+        System.out.println("Reversed: " + reversed);
+
+        if(input.equals(reversed))
+
             System.out.println("It is Palindrome");
 
         else
+
             System.out.println("It is not Palindrome");
 
     }
