@@ -1,26 +1,37 @@
-// version 3.0
+// version 4.0
 // author Manan Sharma
-// UseCase 3 String Reverse Palindrome
+// UseCase 4 Character Array Palindrome
 
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        String input = "radar";
+        String input = "level";
 
-        String reversed = "";
+        char[] chars = input.toCharArray();
 
-        for(int i = input.length() - 1; i >= 0; i--) {
+        int start = 0;
+        int end = chars.length - 1;
 
-            reversed = reversed + input.charAt(i);
+        boolean isPalindrome = true;
+
+        while(start < end) {
+
+            if(chars[start] != chars[end]) {
+
+                isPalindrome = false;
+                break;
+
+            }
+
+            start++;
+            end--;
 
         }
 
         System.out.println("Input: " + input);
 
-        System.out.println("Reversed: " + reversed);
-
-        if(input.equals(reversed))
+        if(isPalindrome)
 
             System.out.println("It is Palindrome");
 
