@@ -1,27 +1,21 @@
-// version 9.0
-// author Manan Sharma
-// UseCase 9 Recursive Palindrome Checker
-
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        String input = "madam";
+        String input = "A man a plan a canal Panama";
 
-        boolean result = checkPalindrome(input, 0, input.length() - 1);
+        String normalized = input.replaceAll("\\s+", "").toLowerCase();
 
-        System.out.println("Input: " + input);
-        System.out.println("Is Palindrome: " + result);
-    }
+        boolean isPalindrome = true;
 
-    static boolean checkPalindrome(String str, int start, int end) {
+        for(int i = 0; i < normalized.length()/2; i++){
+            if(normalized.charAt(i) != normalized.charAt(normalized.length()-1-i)){
+                isPalindrome = false;
+                break;
+            }
+        }
 
-        if (start >= end)
-            return true;
-
-        if (str.charAt(start) != str.charAt(end))
-            return false;
-
-        return checkPalindrome(str, start + 1, end - 1);
+        System.out.println("Input : " + input);
+        System.out.println("Is Palindrome : " + isPalindrome);
     }
 }
