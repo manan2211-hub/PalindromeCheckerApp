@@ -1,16 +1,16 @@
-// version 11.0
+// version 12.0
 // author Manan Sharma
-// UseCase 11 Object-Oriented Palindrome Service
+// UseCase 12 Strategy Pattern for Palindrome Algorithms
 
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        String input = "madam";
+        String input = "level";
 
-        PalindromeService service = new PalindromeService();
+        PalindromeStrategy strategy = new StackStrategy();
 
-        boolean result = service.checkPalindrome(input);
+        boolean result = strategy.check(input);
 
         System.out.println("Input : " + input);
         System.out.println("Is Palindrome : " + result);
@@ -18,23 +18,29 @@ public class PalindromeCheckerApp {
 }
 
 /*
- Service class containing palindrome logic
+ Strategy Interface
 */
-class PalindromeService {
+interface PalindromeStrategy {
+    boolean check(String input);
+}
 
-    public boolean checkPalindrome(String input) {
+/*
+ Stack based implementation
+*/
+class StackStrategy implements PalindromeStrategy {
 
-        int start = 0;
-        int end = input.length() - 1;
+    public boolean check(String input) {
 
-        while(start < end) {
+        java.util.Stack<Character> stack = new java.util.Stack<>();
 
-            if(input.charAt(start) != input.charAt(end)) {
+        for(char c : input.toCharArray()) {
+            stack.push(c);
+        }
+
+        for(char c : input.toCharArray()) {
+            if(c != stack.pop()) {
                 return false;
             }
-
-            start++;
-            end--;
         }
 
         return true;
