@@ -1,6 +1,6 @@
-// version 12.0
+// version 13.0
 // author Manan Sharma
-// UseCase 12 Strategy Pattern for Palindrome Algorithms
+// UseCase 13 Performance Comparison
 
 public class PalindromeCheckerApp {
 
@@ -8,39 +8,32 @@ public class PalindromeCheckerApp {
 
         String input = "level";
 
-        PalindromeStrategy strategy = new StackStrategy();
+        long startTime = System.nanoTime();
 
-        boolean result = strategy.check(input);
+        boolean result = checkPalindrome(input);
+
+        long endTime = System.nanoTime();
+
+        long executionTime = endTime - startTime;
 
         System.out.println("Input : " + input);
         System.out.println("Is Palindrome : " + result);
+        System.out.println("Execution Time : " + executionTime + " ns");
     }
-}
 
-/*
- Strategy Interface
-*/
-interface PalindromeStrategy {
-    boolean check(String input);
-}
+    public static boolean checkPalindrome(String input) {
 
-/*
- Stack based implementation
-*/
-class StackStrategy implements PalindromeStrategy {
+        int start = 0;
+        int end = input.length() - 1;
 
-    public boolean check(String input) {
+        while(start < end) {
 
-        java.util.Stack<Character> stack = new java.util.Stack<>();
-
-        for(char c : input.toCharArray()) {
-            stack.push(c);
-        }
-
-        for(char c : input.toCharArray()) {
-            if(c != stack.pop()) {
+            if(input.charAt(start) != input.charAt(end)) {
                 return false;
             }
+
+            start++;
+            end--;
         }
 
         return true;
